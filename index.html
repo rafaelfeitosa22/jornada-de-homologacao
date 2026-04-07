@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jornada de Homologação</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sidebar-width: 280px;
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --accent: #0ea5e9;
+      --bg: #f8fafc;
+      --sidebar-bg: #1e293b;
+      --sidebar-text: #cbd5e1;
+      --sidebar-hover: #334155;
+      --sidebar-active: #3b82f6;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #3b82f6;
+      --purple: #8b5cf6;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--sidebar-bg);
+      position: fixed;
+      top: 0; left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px 16px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-logo .icon {
+      width: 36px; height: 36px;
+      background: var(--primary-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+
+    .sidebar-title {
+      color: #f1f5f9;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .sidebar-subtitle {
+      color: #64748b;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .sidebar-nav {
+      padding: 12px 0;
+      flex: 1;
+    }
+
+    .nav-section-label {
+      color: #475569;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 12px 20px 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 20px;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover {
+      background: var(--sidebar-hover);
+      color: #f1f5f9;
+    }
+
+    .nav-item.active {
+      background: rgba(59,130,246,0.15);
+      border-left-color: var(--sidebar-active);
+      color: #93c5fd;
+    }
+
+    .nav-item .nav-icon { font-size: 15px; width: 18px; text-align: center; }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid #334155;
+      color: #475569;
+      font-size: 11px;
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .topbar-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .topbar-breadcrumb span:last-child { color: var(--text); font-weight: 600; }
+
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-green { background: #d1fae5; color: #065f46; }
+    .badge-yellow { background: #fef3c7; color: #92400e; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-purple { background: #ede9fe; color: #5b21b6; }
+    .badge-gray { background: #f1f5f9; color: #475569; }
+
+    .content {
+      padding: 40px;
+      max-width: 900px;
+    }
+
+    /* SECTIONS */
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 32px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 20px;
+      background: var(--primary-light);
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 20px 0 8px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .card-accent {
+      border-left: 4px solid var(--primary-light);
+    }
+
+    .card-success { border-left: 4px solid var(--success); }
+    .card-warning { border-left: 4px solid var(--warning); }
+    .card-danger  { border-left: 4px solid var(--danger); }
+    .card-purple  { border-left: 4px solid var(--purple); }
+
+    /* STEPS */
+    .steps { list-style: none; }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 32px; height: 32px;
+      min-width: 32px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .step-content { flex: 1; }
+    .step-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .step-desc { font-size: 13px; color: #4b5563; line-height: 1.6; }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 13px;
+      line-height: 1.6;
+      border-bottom: 1px solid #f1f5f9;
+      color: #374151;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .check-icon {
+      width: 20px; height: 20px;
+      min-width: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    .check-icon.required { background: #dbeafe; color: #1e40af; }
+    .check-icon.optional { background: #d1fae5; color: #065f46; }
+    .check-icon.warning  { background: #fef3c7; color: #92400e; }
+    .check-icon.danger   { background: #fee2e2; color: #991b1b; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 12px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead th {
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #374151;
+      vertical-align: top;
+    }
+
+    tbody tr:hover { background: #f8fafc; }
+
+    .code-tag {
+      background: #f1f5f9;
+      color: #1e40af;
+      border: 1px solid #dbeafe;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ALERT */
+    .alert {
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 12px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .alert-icon { font-size: 18px; margin-top: 1px; }
+    .alert-blue   { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+    .alert-yellow { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+    .alert-red    { background: #fff1f2; border: 1px solid #fecaca; color: #991b1b; }
+    .alert-green  { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+
+    /* HOME */
+    .home-hero {
+      background: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);
+      border-radius: 16px;
+      padding: 40px;
+      color: white;
+      margin-bottom: 32px;
+    }
+
+    .home-hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+    .home-hero p  { opacity: 0.85; font-size: 15px; line-height: 1.6; max-width: 600px; }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .home-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .home-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      border-color: var(--primary-light);
+    }
+
+    .home-card-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .home-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .home-card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .sidebar { width: 240px; transform: translateX(-240px); transition: transform 0.3s; }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .card-grid { grid-template-columns: 1fr; }
+      .home-grid { grid-template-columns: 1fr 1fr; }
+      .content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="icon">🧪</div>
+      <div>
+        <div class="sidebar-title">Jornada de<br>Homologação</div>
+      </div>
+    </div>
+    <div class="sidebar-subtitle">Wiki da Equipe de QA</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="nav-section-label">Navegação</div>
+
+    <a class="nav-item active" onclick="showSection('home')">
+      <span class="nav-icon">🏠</span> Início
+    </a>
+
+    <div class="nav-section-label">Processo</div>
+
+    <a class="nav-item" onclick="showSection('conceitos')">
+      <span class="nav-icon">📚</span> Conceitos Iniciais
+    </a>
+    <a class="nav-item" onclick="showSection('preparar')">
+      <span class="nav-icon">🛠️</span> Preparar o Terreno
+    </a>
+    <a class="nav-item" onclick="showSection('zephyr')">
+      <span class="nav-icon">🔬</span> Preparação do Teste
+    </a>
+    <a class="nav-item" onclick="showSection('execucao')">
+      <span class="nav-icon">✅</span> Execução dos Testes
+    </a>
+    <a class="nav-item" onclick="showSection('encerramento')">
+      <span class="nav-icon">📋</span> Verificações Finais
+    </a>
+    <a class="nav-item" onclick="showSection('fora-padrao')">
+      <span class="nav-icon">⚠️</span> Demandas Fora do Padrão
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    Jornada de Homologação · 2025
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-breadcrumb">
+      <span>Wiki</span>
+      <span>›</span>
+      <span id="breadcrumb-current">Início</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="badge badge-blue">🧪 QA Team</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- HOME -->
+    <div id="section-home" class="section active">
+      <div class="home-hero">
+        <h1>🧪 Jornada de Homologação</h1>
+        <p>Guia completo dos processos, padrões e boas práticas da equipe de qualidade. Cada membro pode contribuir com o conteúdo da sua área de domínio.</p>
+      </div>
+
+      <div class="home-grid">
+        <div class="home-card" onclick="showSection('conceitos')">
+          <div class="home-card-icon">📚</div>
+          <div class="home-card-title">Conceitos Iniciais</div>
+          <div class="home-card-desc">Tipos de demanda, GIS, Jira e entregáveis</div>
+        </div>
+        <div class="home-card" onclick="showSection('preparar')">
+          <div class="home-card-icon">🛠️</div>
+          <div class="home-card-title">Preparar o Terreno</div>
+          <div class="home-card-desc">DOR, fila de homologação, documentação e implantação</div>
+        </div>
+        <div class="home-card" onclick="showSection('zephyr')">
+          <div class="home-card-icon">🔬</div>
+          <div class="home-card-title">Preparação do Teste</div>
+          <div class="home-card-desc">Visão Zephyr, casos de teste e ciclos</div>
+        </div>
+        <div class="home-card" onclick="showSection('execucao')">
+          <div class="home-card-icon">✅</div>
+          <div class="home-card-title">Execução dos Testes</div>
+          <div class="home-card-desc">Evidências, bugs, bloqueios e status</div>
+        </div>
+        <div class="home-card" onclick="showSection('encerramento')">
+          <div class="home-card-icon">📋</div>
+          <div class="home-card-title">Verificações Finais</div>
+          <div class="home-card-desc">Aceite, fechamento do ciclo e formalização</div>
+        </div>
+        <div class="home-card" onclick="showSection('fora-padrao')">
+          <div class="home-card-icon">⚠️</div>
+          <div class="home-card-title">Demandas Fora do Padrão</div>
+          <div class="home-card-desc">ALTER, GRANT, INDEX, Update BD e exceções</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONCEITOS INICIAIS -->
+    <div id="section-conceitos" class="section">
+      <div class="page-title">📚 Conceitos Iniciais</div>
+      <div class="page-subtitle">Base de conhecimento sobre tipos de demandas, ferramentas e entregáveis utilizados no processo de homologação.</div>
+
+      <div class="alert alert-blue">
+        <span class="alert-icon">ℹ️</span>
+        <div>Esta seção apresenta os conceitos fundamentais que todo membro da equipe precisa dominar antes de iniciar o processo de homologação.</div>
+      </div>
+
+      <h2>Tipos de Demandas</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="badge badge-blue">Corretiva</span></td><td>Correção de defeitos encontrados em produção ou homologação</td></tr>
+            <tr><td><span class="badge badge-green">Evolutiva Funcional</span></td><td>Novas funcionalidades ou melhorias em regras de negócio</td></tr>
+            <tr><td><span class="badge badge-purple">Evolutiva Não Funcional</span></td><td>Melhorias de performance, segurança, infraestrutura, etc.</td></tr>
+            <tr><td><span class="badge badge-yellow">Performance / Tuning</span></td><td>Otimizações de banco de dados (Tuning DB2)</td></tr>
+            <tr><td><span class="badge badge-gray">API</span></td><td>Desenvolvimento ou alteração de APIs</td></tr>
+            <tr><td><span class="badge badge-red">Mandatória</span></td><td>Demandas obrigatórias por regulamentação ou compliance</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>O que é GIS?</h2>
+      <div class="card card-accent">
+        <p>O <strong>GIS</strong> é o sistema de gestão de implantações utilizado para controle e rastreabilidade das demandas. Toda demanda deve possuir um número GIS associado, que deve estar vinculado à tarefa correspondente no Jira.</p>
+        <p>O homologador é responsável por verificar se o link entre o GIS e o Jira está correto antes de iniciar os testes.</p>
+      </div>
+
+      <h2>O que é um Entregável no Jira?</h2>
+      <div class="card card-accent">
+        <p>O <strong>Entregável</strong> é o ticket no Jira que representa a demanda a ser homologada. Pode ser uma <em>Sub-Tarefa</em>, <em>Item de Trabalho</em>, <em>Bug de Produção</em> ou <em>Entregável</em> propriamente dito.</p>
+        <p>O ciclo de teste <strong>obrigatoriamente</strong> deve estar vinculado a um desses tipos de ticket.</p>
+      </div>
+    </div>
+
+    <!-- PREPARAR O TERRENO -->
+    <div id="section-preparar" class="section">
+      <div class="page-title">🛠️ Preparar o Terreno</div>
+      <div class="page-subtitle">Etapas obrigatórias antes de iniciar qualquer atividade de testes. A correta preparação garante que a demanda está apta para homologação.</div>
+
+      <h2>DOR — Definition of Ready</h2>
+      <div class="alert alert-yellow">
+        <span class="alert-icon">📌</span>
+        <div>O DOR precisa ser formalizado e nomeado pela equipe. Por enquanto, os critérios abaixo representam o que deve ser verificado antes de aceitar a demanda para homologação.</div>
+      </div>
+
+      <h2>Como a Demanda Chega</h2>
+      <ol class="steps">
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Fila de Homologação</div>
+            <div class="step-desc">Confirmar se os itens GIS / Jira / Chamados foram encaminhados corretamente para a fila de homologação.</div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Validar Link GIS ↔ Jira</div>
+            <div class="step-desc">Verificar se no GIS há o link da tarefa de testes/homologação no Jira. <strong>A responsabilidade desta verificação é do homologador.</strong> É considerada uma boa prática fundamental.</div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Conferir campo "Número GIS" / "Entregável" no Jira</div>
+            <div class="step-desc">Verificar se na tarefa do Jira o campo <span class="code-tag">Número GIS</span> ou <span class="code-tag">Número do Entregável</span> está preenchido com o número correto e também no título do card.</div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Verificar Documentação da Demanda</div>
+            <div class="step-desc">
+              Verificar se existe documentação no item de trabalho ou tarefa de testes/homologação. Os seguintes itens devem estar preenchidos:
+              <ul style="margin: 8px 0 0 16px; font-size: 13px; line-height: 1.8;">
+                <li><strong>Objetivo</strong></li>
+                <li><strong>Detalhes Técnicos</strong></li>
+                <li><strong>Regras</strong></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="alert alert-red">
+        <span class="alert-icon">⛔</span>
+        <div>O <strong>Épico</strong>, apesar de conter necessidades e informações solicitadas pelo PO, <strong>não possui regras e detalhes técnicos</strong>, portanto não é suficiente para viabilizar o processo de testes/homologação.</div>
+      </div>
+
+      <div class="card card-warning">
+        <div class="card-title">⚠️ Bug de Especificação</div>
+        <p>Abrir bug de especificação se as informações/regras não existirem ou não forem suficientes no card de testes/homologação.</p>
+      </div>
+
+      <div class="card card-success">
+        <div class="card-title">✅ Boa Prática — Repasses Gravados</div>
+        <p>Realizar repasses da funcionalidade por meio de reuniões gravadas com transcrição, quando necessário. Esta ação auxilia na identificação e melhoria do entendimento dos cenários técnicos e negociais.</p>
+        <p><strong>Atenção:</strong> Esta ação é apenas um apoio. A documentação é a principal via e não isenta o registro de bug por insuficiência ou falta de informação.</p>
+      </div>
+
+      <h2>Campos Obrigatórios no Jira</h2>
+      <div class="card">
+        <div class="card-title">📝 Aba Homologação</div>
+        <ul class="checklist">
+          <li><span class="check-icon required">✓</span> Revisor</li>
+          <li><span class="check-icon required">✓</span> Data Início Planejado</li>
+          <li><span class="check-icon required">✓</span> Data Fim Planejado</li>
+          <li><span class="check-icon required">✓</span> Campo Comentário</li>
+        </ul>
+      </div>
+
+      <h2>Implantação</h2>
+      <div class="card-grid">
+        <div class="card card-accent">
+          <div class="card-title">🔧 Componente</div>
+          <p>Realizar a implantação dos componentes utilizando <strong>GIS / Jira</strong>.</p>
+          <p>Simular o funcionamento do sistema/funcionalidade atual <strong>antes</strong> de implantar as demandas (Corretivas, Evolutivas e Mandatórias).</p>
+        </div>
+        <div class="card card-danger">
+          <div class="card-title">🗄️ Banco de Dados</div>
+          <p>Utilizar <strong>OBRIGATORIAMENTE</strong> o aplicador de scripts para a aplicação dos scripts de banco de dados.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZEPHYR -->
+    <div id="section-zephyr" class="section">
+      <div class="page-title">🔬 Preparação do Teste — Visão Zephyr</div>
+      <div class="page-subtitle">Estrutura de casos de teste, ciclos e planos no Zephyr. Entenda os tipos, obrigações e vínculos necessários.</div>
+
+      <h2>Tipos de Casos de Teste</h2>
+      <div class="card-grid">
+        <div class="card card-accent">
+          <div class="card-title">📋 Casos Negociais</div>
+          <p>Criados no <strong>projeto do produto</strong>. Utilizam a estrutura <span class="badge badge-blue">BDD</span>.</p>
+          <p>Podem ser do tipo <span class="badge badge-green">Positivo</span> e <span class="badge badge-red">Negativo</span>.</p>
+          <p>Responsabilidade do homologador na criação dos casos na demanda. Atenção ao campo de seleção do tipo de escrita.</p>
+        </div>
+        <div class="card card-purple">
+          <div class="card-title">🔁 Casos Padrão</div>
+          <p>Criados no projeto <strong>QUALIDADE E TESTES</strong>. Objetivo de reutilização e padronização.</p>
+          <p>Obrigam evidência de execução.</p>
+        </div>
+      </div>
+
+      <h2>Casos de Teste Genéricos Obrigatórios</h2>
+      <div class="alert alert-yellow">
+        <span class="alert-icon">⚠️</span>
+        <div>Os casos abaixo são <strong>obrigatórios</strong> e precisam de evidência comprovando que o teste foi realizado.</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Código</th><th>Descrição</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="code-tag">QET-T1</span></td><td>Tuning DB2</td></tr>
+            <tr><td><span class="code-tag">QET-T6</span></td><td>Executar Automação</td></tr>
+            <tr><td><span class="code-tag">QET-T8</span></td><td>Validar Demanda Corretiva</td></tr>
+            <tr><td><span class="code-tag">QET-T13</span></td><td>Validar testes de segurança na ferramenta BURP</td></tr>
+            <tr><td><span class="code-tag">QET-T15</span></td><td>Validar Design de APIs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Casos de Testes Mínimos por Tipo de Demanda</h2>
+
+      <div class="alert alert-blue">
+        <span class="alert-icon">ℹ️</span>
+        <div>O campo <strong>Tipo de Demanda</strong> já está disponível no ciclo de teste para todos os projetos.</div>
+      </div>
+
+      <h3>🔴 Demandas Corretivas</h3>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T8</span> — Validar Demanda Corretiva</span></li>
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T5</span> — Realizar Teste Regressivo</span></li>
+        </ul>
+      </div>
+
+      <h3>🟢 Demandas Evolutivas Funcionais</h3>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T3</span> — Testes Exploratórios em Demandas Evolutivas</span></li>
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T5</span> — Realizar Teste Regressivo</span></li>
+          <li><span class="check-icon required">✓</span>Casos executados no ciclo para a funcionalidade/escopo</li>
+          <li><span class="check-icon required">✓</span>Executar no <strong>mínimo 5 casos de teste</strong> (P e N)</li>
+          <li><span class="check-icon warning">!</span>Deve conter pelo menos <strong>1 cenário positivo</strong> e <strong>1 negativo</strong></li>
+        </ul>
+      </div>
+
+      <h3>🔵 Demandas Evolutivas Não Funcionais</h3>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T3</span> — Testes Exploratórios em Demandas Evolutivas</span></li>
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T5</span> — Realizar Teste Regressivo</span></li>
+        </ul>
+      </div>
+
+      <h3>🟡 Demandas de Performance / Tuning DB2</h3>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T3</span> — Testes Exploratórios em Demandas Evolutivas</span></li>
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T1</span> — Tuning DB2</span></li>
+        </ul>
+      </div>
+
+      <h3>⚪ Demandas de API</h3>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">✓</span>Pelo menos <strong>1 caso de teste por API</strong> no Jira</li>
+          <li><span class="check-icon required">✓</span><span><span class="code-tag">QET-T5</span> — Realizar Teste Regressivo</span></li>
+        </ul>
+      </div>
+
+      <h2>Ciclo de Teste, Plano de Teste e Vínculo</h2>
+      <div class="card-grid">
+        <div class="card card-accent">
+          <div class="card-title">🔄 Ciclo de Teste</div>
+          <p>Criado para registrar o <strong>escopo da demanda</strong> a ser homologada. Cada demanda pode ter 1 ou mais ciclos.</p>
+          <p>Para demandas de pacote com várias STIs, sugere-se <strong>1 ciclo por STI</strong>.</p>
+        </div>
+        <div class="card card-purple">
+          <div class="card-title">📊 Plano de Teste</div>
+          <p>Criado <strong>obrigatoriamente apenas quando houver mais de 1 ciclo</strong> para a demanda.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🔗 Vínculo Jira</div>
+        <p>O ciclo de teste precisa estar vinculado a um destes tickets:</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+          <span class="badge badge-blue">Sub-Tarefa</span>
+          <span class="badge badge-green">Item de Trabalho</span>
+          <span class="badge badge-yellow">Bug de Produção</span>
+          <span class="badge badge-purple">Entregável</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXECUÇÃO -->
+    <div id="section-execucao" class="section">
+      <div class="page-title">✅ Casos de Teste Executados</div>
+      <div class="page-subtitle">Regras para registro de evidências, tratamento de bugs, bloqueios e status intermediários dos casos de teste.</div>
+
+      <h2>Casos Executados com Sucesso</h2>
+      <div class="card card-success">
+        <ul class="checklist">
+          <li><span class="check-icon required">✓</span>Precisa ter <strong>evidência de sucesso</strong> no anexo</li>
+          <li><span class="check-icon required">✓</span>As evidências precisam ter <strong>data e hora em TODAS as telas</strong></li>
+          <li><span class="check-icon optional">ℹ</span>Para vídeos ou arquivos muito grandes: anexar no <strong>SharePoint</strong> e incluir o link no campo "resultado do teste"</li>
+        </ul>
+      </div>
+
+      <h2>Casos de Teste com Bug</h2>
+      <div class="card card-danger">
+        <ul class="checklist">
+          <li><span class="check-icon danger">✗</span>Colocar o caso de teste com status <span class="badge badge-red">FALHA</span></li>
+          <li><span class="check-icon required">✓</span>Incluir link do bug aberto vinculado ao caso de teste</li>
+        </ul>
+        <div class="alert alert-yellow" style="margin-top: 12px;">
+          <span class="alert-icon">📌</span>
+          <div>Para aprovação de demandas com bugs abertos, o bug precisa ter um comentário de tratamento e o campo <span class="code-tag">Avaliação DEV</span> preenchido com <strong>"Próxima Release"</strong>. <strong>Publicar no Hub.</strong></div>
+        </div>
+      </div>
+
+      <h2>Casos de Teste Bloqueados</h2>
+      <div class="card card-warning">
+        <ul class="checklist">
+          <li><span class="check-icon warning">!</span>Incluir um <strong>comentário no campo resultado</strong> com o motivo do bloqueio</li>
+        </ul>
+      </div>
+
+      <h2>Casos Não Executados / Em Andamento</h2>
+      <div class="alert alert-red">
+        <span class="alert-icon">⛔</span>
+        <div>São status <strong>intermediários</strong> utilizados durante a homologação. <strong>Não é possível aprovar uma demanda</strong> com casos nestes status.</div>
+      </div>
+    </div>
+
+    <!-- ENCERRAMENTO -->
+    <div id="section-encerramento" class="section">
+      <div class="page-title">📋 Verificações Finais e Encerramento</div>
+      <div class="page-subtitle">Etapas obrigatórias para formalizar, fechar e aprovar a demanda homologada.</div>
+
+      <ol class="steps">
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Aceite com o Gestor</div>
+            <div class="step-desc">
+              Realizar aceite com o Gestor do Produto para demandas <strong>Evolutivas Negociais</strong> e <strong>Mandatórias</strong>.<br>
+              Criação do GED conforme o Guia de Homologação.<br>
+              <em>Verificar sobre a inclusão do analista de desenvolvimento (Scrum Master) no aceite e na aprovação do Certificado de Conformidade.</em>
+            </div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Fechamento do Ciclo de Teste</div>
+            <div class="step-desc">
+              <ul style="margin: 8px 0 0 16px; font-size: 13px; line-height: 1.8;">
+                <li>Garantir que <strong>todos os casos foram executados</strong> e possuem evidências</li>
+                <li>Status do ciclo deve estar como <span class="badge badge-green">Concluído</span></li>
+                <li>Para demandas com pacotes: todos os itens devem estar com status <strong>Homologado</strong> antes de concluir as tarefas</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Formalização da Demanda</div>
+            <div class="step-desc">
+              <ul style="margin: 8px 0 0 16px; font-size: 13px; line-height: 1.8;">
+                <li>Preencher <strong>Mapa de Teste (Tipo C)</strong> com o link do plano de teste ou ciclo de teste do Jira</li>
+                <li>Aprovar o GIS</li>
+                <li>Concluir a sub-tarefa / item de trabalho no Jira</li>
+                <li>Devolver o chamado</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Fechamento das Atividades no Jira</div>
+            <div class="step-desc">Sub-tarefa / item de trabalho deve estar com status <span class="badge badge-green">Homologado</span> / <span class="badge badge-green">Concluído</span> conforme o projeto.</div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="alert alert-red">
+        <span class="alert-icon">⛔</span>
+        <div><strong>Não temos autorização</strong> para aprovar demandas sem a execução de todos os testes, inserção das evidências, ou com defeitos abertos no ciclo, sem a prévia aprovação do <strong>Coordenador/Gerente</strong>.</div>
+      </div>
+    </div>
+
+    <!-- FORA DO PADRÃO -->
+    <div id="section-fora-padrao" class="section">
+      <div class="page-title">⚠️ Demandas Fora do Padrão</div>
+      <div class="page-subtitle">Procedimentos especiais para demandas enviadas fora do fluxo convencional ou com características específicas que dispensam o processo padrão.</div>
+
+      <h2>Demandas Enviadas de Forma Indevida</h2>
+      <div class="card card-warning">
+        <div class="card-title">⚠️ Ação para Demandas Indevidas</div>
+        <p>Pode ser concluída como <span class="badge badge-gray">Feito</span> após o comentário do analista de desenvolvimento com insumos, para que o campo homologação seja alterado para <strong>"Não"</strong>.</p>
+      </div>
+
+      <h2>Demandas de Alteração de Estrutura</h2>
+
+      <h3>Tipo ALTER</h3>
+      <div class="card card-accent">
+        <p>Inclui criação de <strong>INDEX</strong>, <strong>GRANT</strong>, criação de tabelas — via <strong>GIS</strong> e <strong>Flyway</strong>. São <span class="badge badge-green">pré-aprovadas</span>.</p>
+        <p style="margin-top: 8px;">Se o mapa de teste não for criado automaticamente, o analista pode criar manualmente, selecionando o tipo <span class="code-tag">C</span> e informando o texto:</p>
+        <div class="alert alert-blue" style="margin-top: 8px;">
+          <span class="alert-icon">📝</span>
+          <div><em>"Esta demanda, por se tratar de script TIPO ALTER já possui autorização/homologação prévia do time de DBAs do Sicoob, não necessitando seguir o processo convencional de homologação."</em><br>Os outros campos podem ser preenchidos apenas com um ponto (.).</div>
+        </div>
+      </div>
+
+      <h3>Tipo GRANT e INDEX</h3>
+      <div class="card card-accent">
+        <p>Demandas que contenham apenas criação de <strong>GRANT</strong> ou <strong>INDEX</strong> devem ser aplicadas em homologação.</p>
+        <p style="margin-top: 8px;">Criar o mapa de teste do tipo <span class="code-tag">C</span> com a seguinte justificativa no campo "Processo":</p>
+        <div class="alert alert-blue" style="margin-top: 8px;">
+          <span class="alert-icon">📝</span>
+          <div><em>"Esta demanda não segue o processo convencional de homologação por se tratar apenas de concessão de Grant ou criação de Index."</em><br>Nos demais campos do mapa de teste informar apenas ponto final (.).</div>
+        </div>
+      </div>
+
+      <h3>Update BD</h3>
+      <div class="card card-success">
+        <div class="card-title">✅ Aprovação Automática</div>
+        <p>São aprovadas <strong>automaticamente</strong> no GIS (desde 30/03).</p>
+      </div>
+
+      <h2>Antigos Casos de Teste Genéricos — GovTI Homologação</h2>
+      <div class="card">
+        <div class="card-title">⏱️ Registro de Horas</div>
+        <p>Para testes a pedido do gestor/desenvolvimento e criação de massa de testes, registrar as horas nas atividades:</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+          <span class="code-tag">QET-50</span>
+          <span class="code-tag">QET-51</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const titles = {
+    home: 'Início',
+    conceitos: 'Conceitos Iniciais',
+    preparar: 'Preparar o Terreno',
+    zephyr: 'Preparação do Teste',
+    execucao: 'Execução dos Testes',
+    encerramento: 'Verificações Finais',
+    'fora-padrao': 'Demandas Fora do Padrão'
+  };
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+    document.getElementById('section-' + id).classList.add('active');
+    document.getElementById('breadcrumb-current').textContent = titles[id] || id;
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+      if (item.getAttribute('onclick') === `showSection('${id}')`) {
+        item.classList.add('active');
+      }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
