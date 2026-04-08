@@ -449,6 +449,38 @@
       line-height: 1.5;
     }
 
+    /* MANUAL LINKS */
+    .manual-link {
+      color: var(--text);
+      text-decoration: none;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 2px 0;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+
+    .manual-link:hover {
+      color: var(--primary-light);
+    }
+
+    .manual-link:hover strong {
+      text-decoration: underline;
+    }
+
+    .link-icon {
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .manual-link:hover .link-icon {
+      color: var(--primary-light);
+    }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .sidebar { width: 240px; transform: translateX(-240px); transition: transform 0.3s; }
@@ -980,17 +1012,17 @@
 
       <div class="alert alert-blue">
         <span class="alert-icon">ℹ️</span>
-        <div>Todos os documentos completos estão disponíveis na pasta <strong>Documentos e Vídeos do Guia de Melhores Práticas</strong> no SharePoint.</div>
+        <div>Clique em qualquer tutorial para abrir o documento no SharePoint. Todos os arquivos estão na pasta <strong>Documentos e Vídeos do Guia de Melhores Práticas</strong>.</div>
       </div>
 
       <!-- ONBOARDING -->
       <h2>Onboarding e Integração</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">1</span><span><strong>Onboarding</strong> — Guia geral de entrada na equipe de homologação</span></li>
-          <li><span class="check-icon required">2</span><span><strong>Tutorial para Solicitação de Acessos aos Novos Colaboradores</strong></span></li>
-          <li><span class="check-icon required">3</span><span><strong>Times por Assunto e Analistas CTA</strong> — Estrutura dos times e responsabilidades</span></li>
-          <li><span class="check-icon required">34</span><span><strong>Manual de Onboarding – Testes do SuperApp</strong></span></li>
+          <li><span class="check-icon required">1</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Onboarding</strong> — Guia geral de entrada na equipe de homologação <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">2</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial para Solicitação de Acessos aos Novos Colaboradores</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">3</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Times por Assunto e Analistas CTA</strong> — Estrutura dos times e responsabilidades <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">34</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Manual de Onboarding – Testes do SuperApp</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -998,11 +1030,11 @@
       <h2>Acesso e Infraestrutura</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">8</span><span><strong>Tutorial para Instalação e Configuração de VPNs</strong></span></li>
-          <li><span class="check-icon required">16</span><span><strong>Tutorial com os Endereços e Links Importantes da Homologação</strong></span></li>
-          <li><span class="check-icon required">18</span><span><strong>Tutorial para Desbloqueio da Estação de Trabalho nos Ambientes de Produção e Homologação</strong></span></li>
-          <li><span class="check-icon required">21</span><span><strong>Tutorial de Como Acessar Wifi – MobileDev</strong></span></li>
-          <li><span class="check-icon required">22</span><span><strong>Tutorial de Como Solicitar Acesso ao RDS</strong></span></li>
+          <li><span class="check-icon required">8</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial para Instalação e Configuração de VPNs</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">16</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial com os Endereços e Links Importantes da Homologação</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">18</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial para Desbloqueio da Estação de Trabalho nos Ambientes de Produção e Homologação</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">21</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Como Acessar Wifi – MobileDev</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">22</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Como Solicitar Acesso ao RDS</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1010,9 +1042,9 @@
       <h2>Scripts e Banco de Dados</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">4</span><span><strong>Tutorial - Demanda de Script</strong> — Como encaminhar demandas de script</span></li>
-          <li><span class="check-icon required">5</span><span><strong>Tutorial do Aplicador de Scripts</strong> — Ferramenta obrigatória para aplicação de scripts de BD</span></li>
-          <li><span class="check-icon required">29</span><span><strong>Tutorial de Como Configurar uma Conexão no DB Visualizer (DB2)</strong></span></li>
+          <li><span class="check-icon required">4</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial - Demanda de Script</strong> — Como encaminhar demandas de script <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">5</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial do Aplicador de Scripts</strong> — Ferramenta obrigatória para aplicação de scripts de BD <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">29</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Como Configurar uma Conexão no DB Visualizer (DB2)</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1020,8 +1052,8 @@
       <h2>Testes de Segurança</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon danger">6</span><span><strong>Tutorial de Utilização do Burp Suite no CCS</strong></span></li>
-          <li><span class="check-icon danger">7</span><span><strong>Tutorial de Como Realizar Testes de Segurança Utilizando o Burp Suite</strong></span></li>
+          <li><span class="check-icon danger">6</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Utilização do Burp Suite no CCS</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon danger">7</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Como Realizar Testes de Segurança Utilizando o Burp Suite</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1029,9 +1061,9 @@
       <h2>Mobile e Aplicativos</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">9</span><span><strong>Tutorial para Baixar o Sisbr Mobile 2.0</strong> — Android e iOS</span></li>
-          <li><span class="check-icon required">11</span><span><strong>Tutorial de Como Instalar o APP Sicoob</strong> — Android e iOS</span></li>
-          <li><span class="check-icon required">33</span><span><strong>Manual de Uso DeviceFarm</strong></span></li>
+          <li><span class="check-icon required">9</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial para Baixar o Sisbr Mobile 2.0</strong> — Android e iOS <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">11</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Como Instalar o APP Sicoob</strong> — Android e iOS <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">33</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Manual de Uso DeviceFarm</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1039,10 +1071,10 @@
       <h2>Demandas e Processos</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">10</span><span><strong>Tutorial de Como Formalizar um Aceite de Conformidade</strong> — Demandas Evolutivas Negociais Mandatórias, Prevenção a Fraude e Sistemas de Terceiros</span></li>
-          <li><span class="check-icon required">13</span><span><strong>Tutorial para Tratar Chamados no Topdesk</strong></span></li>
-          <li><span class="check-icon required">17</span><span><strong>Tutorial de Atendimento de Demandas Evolutivas e Corretivas</strong></span></li>
-          <li><span class="check-icon required">30</span><span><strong>Tutorial de como Utilizar a Planilha de Acompanhamento de Demandas</strong></span></li>
+          <li><span class="check-icon required">10</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Como Formalizar um Aceite de Conformidade</strong> — Demandas Evolutivas Negociais Mandatórias, Prevenção a Fraude e Sistemas de Terceiros <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">13</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial para Tratar Chamados no Topdesk</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">17</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Atendimento de Demandas Evolutivas e Corretivas</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">30</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de como Utilizar a Planilha de Acompanhamento de Demandas</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1050,8 +1082,8 @@
       <h2>Performance e Tuning</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">12</span><span><strong>Tutorial de Validação da Performance de Tuning</strong></span></li>
-          <li><span class="check-icon required">25</span><span><strong>Tutorial de Teste de Performance</strong></span></li>
+          <li><span class="check-icon required">12</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Validação da Performance de Tuning</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">25</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Teste de Performance</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1059,10 +1091,10 @@
       <h2>Testes e Ferramentas</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">14</span><span><strong>Guia de Teste de API Rest</strong></span></li>
-          <li><span class="check-icon required">15</span><span><strong>Tutorial de Como Acompanhar o Log no Graylog</strong></span></li>
-          <li><span class="check-icon required">19</span><span><strong>Tutorial de Boas Práticas para Evidências de Testes</strong></span></li>
-          <li><span class="check-icon required">31</span><span><strong>Guia de Automação de Teste</strong></span></li>
+          <li><span class="check-icon required">14</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Guia de Teste de API Rest</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">15</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Como Acompanhar o Log no Graylog</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">19</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Boas Práticas para Evidências de Testes</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">31</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Guia de Automação de Teste</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1070,10 +1102,10 @@
       <h2>Sistemas — SISBR e CAPES</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">20</span><span><strong>Tutorial de Cadastro de Cliente no CAPES 3.0</strong></span></li>
-          <li><span class="check-icon required">24</span><span><strong>Tutorial de Validações do Sisbr 3.0 Storybook</strong> — Design System</span></li>
-          <li><span class="check-icon required">26</span><span><strong>Tutorial de Padrões de Layout para Relatórios do SISBR 2.0 e 3.0 e LGPD</strong></span></li>
-          <li><span class="check-icon required">27</span><span><strong>Tutorial de Padrões de Layout para o SISBR 2.0</strong></span></li>
+          <li><span class="check-icon required">20</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Cadastro de Cliente no CAPES 3.0</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">24</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Validações do Sisbr 3.0 Storybook</strong> — Design System <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">26</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Padrões de Layout para Relatórios do SISBR 2.0 e 3.0 e LGPD</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">27</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Padrões de Layout para o SISBR 2.0</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
@@ -1081,9 +1113,9 @@
       <h2>Jira e Gestão de Atividades</h2>
       <div class="card">
         <ul class="checklist">
-          <li><span class="check-icon required">23</span><span><strong>Processos e Padronizações Qualidade Jira - Zephyr</strong></span></li>
-          <li><span class="check-icon required">28</span><span><strong>Tutorial de Criação de Atividades e Marcação de Horas no Kanban</strong></span></li>
-          <li><span class="check-icon required">32</span><span><strong>Tutorial para Registro de Horas via Jira</strong></span></li>
+          <li><span class="check-icon required">23</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Processos e Padronizações Qualidade Jira - Zephyr</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">28</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial de Criação de Atividades e Marcação de Horas no Kanban</strong> <span class="link-icon">↗</span></a></li>
+          <li><span class="check-icon required">32</span><a class="manual-link" href="https://sicoob.sharepoint.com/sites/Homologao/Documentos%20Compartilhados/Procurou%20Achou/Guia%20de%20Melhores%20Pr%C3%A1ticas%20da%20%C3%81rea%20de%20Qualidade%20e%20Testes/Documentos%20e%20V%C3%ADdeos%20do%20Guia%20de%20Melhores%20Pr%C3%A1ticas?csf=1&web=1&e=y9Mr2r" target="_blank"><strong>Tutorial para Registro de Horas via Jira</strong> <span class="link-icon">↗</span></a></li>
         </ul>
       </div>
 
