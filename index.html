@@ -501,6 +501,12 @@
     <a class="nav-item" onclick="showSection('fora-padrao')">
       <span class="nav-icon">⚠️</span> Demandas Fora do Padrão
     </a>
+
+    <div class="nav-section-label">Guia de Manuais</div>
+
+    <a class="nav-item" onclick="showSection('manuais')">
+      <span class="nav-icon">📖</span> Índice de Manuais
+    </a>
   </div>
 
   <div class="sidebar-footer">
@@ -560,6 +566,11 @@
           <div class="home-card-icon">⚠️</div>
           <div class="home-card-title">Demandas Fora do Padrão</div>
           <div class="home-card-desc">ALTER, GRANT, INDEX, Update BD e exceções</div>
+        </div>
+        <div class="home-card" onclick="showSection('manuais')">
+          <div class="home-card-icon">📖</div>
+          <div class="home-card-title">Índice de Manuais</div>
+          <div class="home-card-desc">34 tutoriais e guias organizados por assunto</div>
         </div>
       </div>
     </div>
@@ -962,6 +973,127 @@
       </div>
     </div>
 
+    <!-- ÍNDICE DE MANUAIS -->
+    <div id="section-manuais" class="section">
+      <div class="page-title">📖 Índice de Manuais</div>
+      <div class="page-subtitle">Guia de Homologação da Área de Qualidade e Testes — 34 tutoriais organizados por assunto. V.1.0</div>
+
+      <div class="alert alert-blue">
+        <span class="alert-icon">ℹ️</span>
+        <div>Todos os documentos completos estão disponíveis na pasta <strong>Documentos e Vídeos do Guia de Melhores Práticas</strong> no SharePoint.</div>
+      </div>
+
+      <!-- ONBOARDING -->
+      <h2>Onboarding e Integração</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">1</span><span><strong>Onboarding</strong> — Guia geral de entrada na equipe de homologação</span></li>
+          <li><span class="check-icon required">2</span><span><strong>Tutorial para Solicitação de Acessos aos Novos Colaboradores</strong></span></li>
+          <li><span class="check-icon required">3</span><span><strong>Times por Assunto e Analistas CTA</strong> — Estrutura dos times e responsabilidades</span></li>
+          <li><span class="check-icon required">34</span><span><strong>Manual de Onboarding – Testes do SuperApp</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- ACESSO E INFRAESTRUTURA -->
+      <h2>Acesso e Infraestrutura</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">8</span><span><strong>Tutorial para Instalação e Configuração de VPNs</strong></span></li>
+          <li><span class="check-icon required">16</span><span><strong>Tutorial com os Endereços e Links Importantes da Homologação</strong></span></li>
+          <li><span class="check-icon required">18</span><span><strong>Tutorial para Desbloqueio da Estação de Trabalho nos Ambientes de Produção e Homologação</strong></span></li>
+          <li><span class="check-icon required">21</span><span><strong>Tutorial de Como Acessar Wifi – MobileDev</strong></span></li>
+          <li><span class="check-icon required">22</span><span><strong>Tutorial de Como Solicitar Acesso ao RDS</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- SCRIPTS E BANCO DE DADOS -->
+      <h2>Scripts e Banco de Dados</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">4</span><span><strong>Tutorial - Demanda de Script</strong> — Como encaminhar demandas de script</span></li>
+          <li><span class="check-icon required">5</span><span><strong>Tutorial do Aplicador de Scripts</strong> — Ferramenta obrigatória para aplicação de scripts de BD</span></li>
+          <li><span class="check-icon required">29</span><span><strong>Tutorial de Como Configurar uma Conexão no DB Visualizer (DB2)</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- SEGURANÇA -->
+      <h2>Testes de Segurança</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon danger">6</span><span><strong>Tutorial de Utilização do Burp Suite no CCS</strong></span></li>
+          <li><span class="check-icon danger">7</span><span><strong>Tutorial de Como Realizar Testes de Segurança Utilizando o Burp Suite</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- MOBILE -->
+      <h2>Mobile e Aplicativos</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">9</span><span><strong>Tutorial para Baixar o Sisbr Mobile 2.0</strong> — Android e iOS</span></li>
+          <li><span class="check-icon required">11</span><span><strong>Tutorial de Como Instalar o APP Sicoob</strong> — Android e iOS</span></li>
+          <li><span class="check-icon required">33</span><span><strong>Manual de Uso DeviceFarm</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- DEMANDAS E PROCESSOS -->
+      <h2>Demandas e Processos</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">10</span><span><strong>Tutorial de Como Formalizar um Aceite de Conformidade</strong> — Demandas Evolutivas Negociais Mandatórias, Prevenção a Fraude e Sistemas de Terceiros</span></li>
+          <li><span class="check-icon required">13</span><span><strong>Tutorial para Tratar Chamados no Topdesk</strong></span></li>
+          <li><span class="check-icon required">17</span><span><strong>Tutorial de Atendimento de Demandas Evolutivas e Corretivas</strong></span></li>
+          <li><span class="check-icon required">30</span><span><strong>Tutorial de como Utilizar a Planilha de Acompanhamento de Demandas</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- PERFORMANCE -->
+      <h2>Performance e Tuning</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">12</span><span><strong>Tutorial de Validação da Performance de Tuning</strong></span></li>
+          <li><span class="check-icon required">25</span><span><strong>Tutorial de Teste de Performance</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- TESTES E FERRAMENTAS -->
+      <h2>Testes e Ferramentas</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">14</span><span><strong>Guia de Teste de API Rest</strong></span></li>
+          <li><span class="check-icon required">15</span><span><strong>Tutorial de Como Acompanhar o Log no Graylog</strong></span></li>
+          <li><span class="check-icon required">19</span><span><strong>Tutorial de Boas Práticas para Evidências de Testes</strong></span></li>
+          <li><span class="check-icon required">31</span><span><strong>Guia de Automação de Teste</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- SISTEMAS SISBR / CAPES -->
+      <h2>Sistemas — SISBR e CAPES</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">20</span><span><strong>Tutorial de Cadastro de Cliente no CAPES 3.0</strong></span></li>
+          <li><span class="check-icon required">24</span><span><strong>Tutorial de Validações do Sisbr 3.0 Storybook</strong> — Design System</span></li>
+          <li><span class="check-icon required">26</span><span><strong>Tutorial de Padrões de Layout para Relatórios do SISBR 2.0 e 3.0 e LGPD</strong></span></li>
+          <li><span class="check-icon required">27</span><span><strong>Tutorial de Padrões de Layout para o SISBR 2.0</strong></span></li>
+        </ul>
+      </div>
+
+      <!-- JIRA E GESTÃO -->
+      <h2>Jira e Gestão de Atividades</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><span class="check-icon required">23</span><span><strong>Processos e Padronizações Qualidade Jira - Zephyr</strong></span></li>
+          <li><span class="check-icon required">28</span><span><strong>Tutorial de Criação de Atividades e Marcação de Horas no Kanban</strong></span></li>
+          <li><span class="check-icon required">32</span><span><strong>Tutorial para Registro de Horas via Jira</strong></span></li>
+        </ul>
+      </div>
+
+      <div class="alert alert-green">
+        <span class="alert-icon">📝</span>
+        <div>Para criar um novo tutorial, consulte as <strong>Orientações de Como Elaborar um Novo Tutorial e Template</strong> disponíveis no SharePoint junto com o documento de Formatação de Tutoriais.</div>
+      </div>
+
+    </div>
+
   </div>
 </div>
 
@@ -973,7 +1105,8 @@
     zephyr: 'Preparação do Teste',
     execucao: 'Execução dos Testes',
     encerramento: 'Verificações Finais',
-    'fora-padrao': 'Demandas Fora do Padrão'
+    'fora-padrao': 'Demandas Fora do Padrão',
+    manuais: 'Índice de Manuais'
   };
 
   function showSection(id) {
